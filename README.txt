@@ -45,3 +45,16 @@ Input:
 	- n: 3
 Expected output:
 	- ['ACC143', 'ACC214', 'ACC312']
+
+
+
+### How to run the script:
+
+# For test case 1, 2 and 3 consecutively:
+
+```
+	python lendable.py transaction_data_1.csv 1
+	python lendable.py transaction_data_2.csv 2
+	python lendable.py transaction_data_3.csv 3
+
+```
