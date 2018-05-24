@@ -17,27 +17,26 @@ with open(filename, 'r') as csvfile:
 
 		# analyze frequency / streaks
 		streaks = {}
-		previousAccount = ''
-		previousDate = ''
+		dates = {}
 		for i, row in enumerate(sortedRows):
 				account = row[0]
 				dateString = row[2].strip().split(' ')[0]
 				date = datetime.strptime(dateString, "%Y-%m-%d")
-				aDayAgo = date - timedelta(days=1)
+				aDayAgo = (date - timedelta(days=1)).strftime('%Y-%m-%d')
 				if account in streaks:
-						if previousAccount == account:
-							if previousDate == date:
-									continue # skip same-day deposits from same user 
-							if previousDate == aDayAgo:
-									streaks[account][-1] += 1 # increment streak
-							else:
-									streaks[account].append(1) # start new streak
+						previousDate = dates[account][-1]
+						# print(previousDate, account)
+						if previousDate == dateString:
+								continue # skip same-day deposits from same user 
+						if previousDate == aDayAgo:
+								streaks[account][-1] += 1 # increment streak
 						else:
 								streaks[account].append(1) # start new streak
+						dates[account].append(dateString)
 				else:
 						streaks[account] = [1]
-				previousDate = date
-				previousAccount = account
+						dates[account] = [dateString]
+				# print(dates[account])
 		# pp.pprint(streaks)
 		
 		rank = {}
