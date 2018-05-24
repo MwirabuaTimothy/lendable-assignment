@@ -1,0 +1,5 @@
+I had a few wrong assumptions about the data
+
+1. the data was already sorted by date
+2. same day deposits were countable in the streak
+3. each entry/deposit/row was always happening one day later
