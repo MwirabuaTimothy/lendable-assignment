@@ -53,6 +53,10 @@ Expected output:
 
 ## How to run the script:
 
+### Requirement:
+	
+	Python 3
+
 ### For test case 1, 2 and 3 consecutively:
 
 	python lendable.py transaction_data_1.csv 1
