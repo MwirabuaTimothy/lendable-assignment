@@ -53,7 +53,7 @@ Expected output:
 
 ## How to run the script:
 
-# For test case 1, 2 and 3 consecutively:
+### For test case 1, 2 and 3 consecutively:
 
 ```
 	python lendable.py transaction_data_1.csv 1
