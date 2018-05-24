@@ -1,3 +1,5 @@
+## Assignment
+
 A lot of work at Lendable goes into figuring how reliably our clients' customers
 pay down their loans. We've noticed that customers that pay regularly, even if only
 in relatively small increments, tend to eventually pay completely. We like these
@@ -17,7 +19,8 @@ period, etc.
 You can use whatever language, tools, etc you would like in order to implement this. Please
 be clear and make sure that we can run your code.
 
-Notes:
+## Notes:
+
 	- When we say consecutive daily payments, we mean that there is at least one
 		transaction per consecutive calendar day.
 	- When we say longest period of consecutive daily payments, we mean the period
@@ -26,7 +29,7 @@ Notes:
 		alphabetically.
 
 
-Test cases:
+## Test cases:
 
 Input:
 	- transactions_csv_file_path: 'transaction_data_1.csv'
@@ -48,7 +51,7 @@ Expected output:
 
 
 
-### How to run the script:
+## How to run the script:
 
 # For test case 1, 2 and 3 consecutively:
 
