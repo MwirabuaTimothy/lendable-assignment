@@ -1,5 +1,4 @@
 import sys, csv, time, heapq, pprint
-from datetime import datetime, timedelta
 
 filename = sys.argv[1]
 numberOfClients = sys.argv[2]
@@ -15,31 +14,34 @@ with open(filename, 'r') as csvfile:
 		sortedRows = sorted(reader, key=lambda row: time.strptime(row[2].strip(), "%Y-%m-%d %H:%M:%S"), reverse=False)
 		# pp.pprint(sortedRows)
 
-		# analyze frequency / streaks
+		# save streaks
+		dateGroups = {}
 		streaks = {}
 		previousAccount = ''
-		previousDate = ''
 		for i, row in enumerate(sortedRows):
 				account = row[0]
-				dateString = row[2].strip().split(' ')[0]
-				date = datetime.strptime(dateString, "%Y-%m-%d")
-				aDayAgo = date - timedelta(days=1)
-				if account in streaks:
-						if previousAccount == account:
-							if previousDate == date:
-									continue # skip same-day deposits from same user 
-							if previousDate == aDayAgo:
-									streaks[account][-1] += 1 # increment streak
-							else:
-									streaks[account].append(1) # start new streak
+				date = row[2].strip().split(' ')[0]
+				if account in dateGroups:
+						if previousAccount == account: # consecutive
+								dateGroups[account][-1].append(date) # increment last streak
 						else:
-								streaks[account].append(1) # start new streak
+								dateGroups[account].append([date]) # broke streak or no streak
 				else:
-						streaks[account] = [1]
-				previousDate = date
+						dateGroups[account] = [[date]]
+						streaks[account] = []
+				
 				previousAccount = account
+		# pp.pprint(dateGroups)
 		# pp.pprint(streaks)
 		
+		# filter payments of same date
+		for account in dateGroups:
+				for dateGroup in dateGroups[account]:
+						filteredDates = list(set(dateGroup))
+						streaks[account].append(len(filteredDates))
+		# pp.pprint(dateGroups)
+		# pp.pprint(streaks)
+
 		rank = {}
 		for account, streak in streaks.items():
 				streak = streaks[account]
