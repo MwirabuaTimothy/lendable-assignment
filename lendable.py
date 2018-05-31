@@ -2,7 +2,10 @@ import sys, csv, time, heapq, pprint
 from datetime import datetime, timedelta
 
 filename = sys.argv[1]
+# filename = 'transaction_data_3.csv'
 numberOfClients = sys.argv[2]
+# numberOfClients = 3
+
 pp = pprint.PrettyPrinter(indent=1,depth=3,compact=True)
 
 with open(filename, 'r') as csvfile:
@@ -47,7 +50,9 @@ with open(filename, 'r') as csvfile:
 
 	# sort rank by values and sort ties alphabetically
 	topN = heapq.nsmallest(int(numberOfClients), rank.items(), key=lambda kv: (-kv[1], kv[0]))
+	# priority queue algorithm
 	# print(topN)
+	# Heaps are binary trees for which every parent node has a value less than or equal to any of its children.
 
 	# return the keys
 	ids = list(dict(topN).keys())
